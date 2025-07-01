@@ -1,0 +1,11 @@
+測試場景
+join NPC1 center
+NPC1: 嗨~
+- 你好
+	set {ans} = true
+- 拜拜
+	set {ans} = false
+if {ans} == true:
+	NPC1: (開心)
+else:
+	NPC1: (傷心)
