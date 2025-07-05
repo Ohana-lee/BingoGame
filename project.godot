@@ -55,6 +55,10 @@ variables={
 "ans": false
 }
 
+[display]
+
+window/stretch/scale=2.0
+
 [dotnet]
 
 project/assembly_name="VN Game"
@@ -77,5 +81,6 @@ dialogic_default_action={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
