@@ -1,0 +1,378 @@
+[gd_scene load_steps=12 format=3 uid="uid://bl2fr8sghxqcw"]
+
+[ext_resource type="Script" uid="uid://y1aagbh2150m" path="res://scripts/huntingArea.gd" id="1_408rf"]
+[ext_resource type="PackedScene" uid="uid://b76hj7eu1w5ww" path="res://scene/tile.tscn" id="2_0fbv7"]
+[ext_resource type="PackedScene" uid="uid://daagcn7p51a3n" path="res://scene/player.tscn" id="3_qhdy2"]
+[ext_resource type="Script" uid="uid://biu6mvfv8swar" path="res://scripts/tile.gd" id="3_sswqx"]
+[ext_resource type="Script" uid="uid://3n5qg8f06uye" path="res://BingoManager.gd" id="4_0fbv7"]
+[ext_resource type="Shader" uid="uid://bvvkwr3j57ofn" path="res://shaders/bingoPanel.gdshader" id="6_sswqx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5ovtv"]
+shader = ExtResource("6_sswqx")
+shader_parameter/lod = 0.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_sswqx"]
+
+[sub_resource type="Animation" id="Animation_s0puv"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_1a1s8"]
+resource_name = "blur"
+length = 0.3
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.15, 0, 0.15, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hdonv"]
+_data = {
+&"RESET": SubResource("Animation_s0puv"),
+&"blur": SubResource("Animation_1a1s8")
+}
+
+[node name="huntingArea" type="Node2D"]
+position = Vector2(442, 274)
+script = ExtResource("1_408rf")
+
+[node name="1" parent="." groups=["tiles"] instance=ExtResource("2_0fbv7")]
+position = Vector2(-241, -365)
+script = ExtResource("3_sswqx")
+tile_color = Color(1, 0, 0, 1)
+bingo_item = 1
+
+[node name="2" parent="." groups=["tiles"] instance=ExtResource("2_0fbv7")]
+position = Vector2(184, -347)
+script = ExtResource("3_sswqx")
+tile_color = Color(0, 1, 0, 1)
+bingo_item = 2
+
+[node name="3" parent="." groups=["tiles"] instance=ExtResource("2_0fbv7")]
+position = Vector2(-45, -90)
+script = ExtResource("3_sswqx")
+tile_color = Color(0, 0, 1, 1)
+bingo_item = 3
+
+[node name="4" parent="." groups=["tiles"] instance=ExtResource("2_0fbv7")]
+position = Vector2(328, -44)
+script = ExtResource("3_sswqx")
+tile_color = Color(1, 0, 0, 1)
+bingo_item = 4
+
+[node name="5" parent="." groups=["tiles"] instance=ExtResource("2_0fbv7")]
+position = Vector2(753, -26)
+script = ExtResource("3_sswqx")
+tile_color = Color(0, 1, 0, 1)
+bingo_item = 5
+
+[node name="6" parent="." groups=["tiles"] instance=ExtResource("2_0fbv7")]
+position = Vector2(524, 231)
+script = ExtResource("3_sswqx")
+tile_color = Color(0, 0, 1, 1)
+bingo_item = 6
+
+[node name="7" parent="." groups=["tiles"] instance=ExtResource("2_0fbv7")]
+position = Vector2(-858, -145)
+script = ExtResource("3_sswqx")
+tile_color = Color(1, 0, 0, 1)
+bingo_item = 7
+
+[node name="8" parent="." groups=["tiles"] instance=ExtResource("2_0fbv7")]
+position = Vector2(-433, -127)
+script = ExtResource("3_sswqx")
+tile_color = Color(0, 1, 0, 1)
+bingo_item = 8
+
+[node name="9" parent="." groups=["tiles"] instance=ExtResource("2_0fbv7")]
+position = Vector2(-662, 130)
+script = ExtResource("3_sswqx")
+tile_color = Color(0, 0, 1, 1)
+bingo_item = 9
+
+[node name="player" parent="." instance=ExtResource("3_qhdy2")]
+position = Vector2(-259, -36)
+scale = Vector2(2.53046, 2.33672)
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+position = Vector2(156.098, 102.708)
+rotation = -2.2677
+scale = Vector2(3.08244, 3.04701)
+
+[node name="BingoManager" type="Control" parent="player/Camera2D"]
+process_mode = 3
+z_index = 1
+layout_mode = 3
+anchors_preset = 0
+offset_left = 76.1819
+offset_top = -35.6198
+offset_right = 116.182
+offset_bottom = 4.38021
+script = ExtResource("4_0fbv7")
+
+[node name="BingoPanelBG" type="ColorRect" parent="player/Camera2D/BingoManager"]
+material = SubResource("ShaderMaterial_5ovtv")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -39.5557
+offset_top = 36.1889
+offset_right = -39.5557
+offset_bottom = 36.1889
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 2.26171
+scale = Vector2(1.15285, 1.24457)
+
+[node name="BingoPanelControl" type="PanelContainer" parent="player/Camera2D/BingoManager"]
+visible = false
+layout_mode = 0
+offset_left = -42.9872
+offset_top = 36.8351
+offset_right = 90.0128
+offset_bottom = 136.835
+rotation = 2.26171
+scale = Vector2(0.306963, 0.450525)
+
+[node name="GridContainer" type="GridContainer" parent="player/Camera2D/BingoManager/BingoPanelControl"]
+modulate = Color(0, 1, 1, 1)
+custom_minimum_size = Vector2(100, 100)
+layout_direction = 2
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/h_separation = 35
+theme_override_constants/v_separation = 35
+columns = 3
+
+[node name="1" type="Control" parent="player/Camera2D/BingoManager/BingoPanelControl/GridContainer"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="player/Camera2D/BingoManager/BingoPanelControl/GridContainer/1"]
+visible = false
+z_index = 2
+layout_mode = 0
+offset_left = -0.242682
+offset_top = 12.9767
+offset_right = 39.7573
+offset_bottom = 52.9767
+scale = Vector2(0.412763, -0.0309063)
+color = Color(1, 1, 0, 1)
+
+[node name="Label" type="Label" parent="player/Camera2D/BingoManager/BingoPanelControl/GridContainer/1"]
+layout_mode = 2
+offset_left = 2.10845
+offset_top = -0.339976
+offset_right = 12.1084
+offset_bottom = 22.66
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="2" type="Control" parent="player/Camera2D/BingoManager/BingoPanelControl/GridContainer"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="player/Camera2D/BingoManager/BingoPanelControl/GridContainer/2"]
+visible = false
+layout_mode = 0
+offset_left = -1.18065
+offset_top = 12.9836
+offset_right = 38.8194
+offset_bottom = 52.9836
+scale = Vector2(0.412763, -0.0309063)
+color = Color(1, 1, 0, 1)
+
+[node name="Label" type="Label" parent="player/Camera2D/BingoManager/BingoPanelControl/GridContainer/2"]
+layout_mode = 2
+offset_left = 2.10845
+offset_top = -0.339976
+offset_right = 12.1084
+offset_bottom = 22.66
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="3" type="Control" parent="player/Camera2D/BingoManager/BingoPanelControl/GridContainer"]
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="player/Camera2D/BingoManager/BingoPanelControl/GridContainer/3"]
+visible = false
+layout_mode = 0
+offset_left = -1.18069
+offset_top = 12.9836
+offset_right = 38.8193
+offset_bottom = 52.9836
+scale = Vector2(0.412763, -0.0309063)
+color = Color(1, 1, 0, 1)
+
+[node name="Label" type="Label" parent="player/Camera2D/BingoManager/BingoPanelControl/GridContainer/3"]
+layout_mode = 2
+offset_left = 2.10845
+offset_top = -0.339976
+offset_right = 12.1084
+offset_bottom = 22.66
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="4" type="Control" parent="player/Camera2D/BingoManager/BingoPanelControl/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="player/Camera2D/BingoManager/BingoPanelControl/GridContainer/4"]
+layout_mode = 2
+offset_left = 2.10845
+offset_top = -0.339976
+offset_right = 12.1084
+offset_bottom = 22.66
+text = "4"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="player/Camera2D/BingoManager/BingoPanelControl/GridContainer/4"]
+visible = false
+layout_mode = 0
+offset_left = -1.18067
+offset_top = 12.9836
+offset_right = 38.8193
+offset_bottom = 52.9836
+scale = Vector2(0.412763, -0.0309063)
+color = Color(1, 1, 0, 1)
+
+[node name="5" type="Control" parent="player/Camera2D/BingoManager/BingoPanelControl/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="player/Camera2D/BingoManager/BingoPanelControl/GridContainer/5"]
+layout_mode = 2
+offset_left = 2.10845
+offset_top = -0.339976
+offset_right = 12.1084
+offset_bottom = 22.66
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="player/Camera2D/BingoManager/BingoPanelControl/GridContainer/5"]
+visible = false
+layout_mode = 0
+offset_left = -1.18067
+offset_top = 12.9836
+offset_right = 38.8193
+offset_bottom = 52.9836
+scale = Vector2(0.412763, -0.0309063)
+color = Color(1, 1, 0, 1)
+
+[node name="6" type="Control" parent="player/Camera2D/BingoManager/BingoPanelControl/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="player/Camera2D/BingoManager/BingoPanelControl/GridContainer/6"]
+layout_mode = 2
+offset_left = 2.10845
+offset_top = -0.339976
+offset_right = 12.1084
+offset_bottom = 22.66
+text = "6"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="player/Camera2D/BingoManager/BingoPanelControl/GridContainer/6"]
+visible = false
+layout_mode = 0
+offset_left = -1.18067
+offset_top = 12.9836
+offset_right = 38.8193
+offset_bottom = 52.9836
+scale = Vector2(0.412763, -0.0309063)
+color = Color(1, 1, 0, 1)
+
+[node name="7" type="Control" parent="player/Camera2D/BingoManager/BingoPanelControl/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="player/Camera2D/BingoManager/BingoPanelControl/GridContainer/7"]
+layout_mode = 2
+offset_left = 2.10845
+offset_top = -0.339976
+offset_right = 12.1084
+offset_bottom = 22.66
+text = "7"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="player/Camera2D/BingoManager/BingoPanelControl/GridContainer/7"]
+visible = false
+layout_mode = 0
+offset_left = -1.18067
+offset_top = 12.9836
+offset_right = 38.8193
+offset_bottom = 52.9836
+scale = Vector2(0.412763, -0.0309063)
+color = Color(1, 1, 0, 1)
+
+[node name="8" type="Control" parent="player/Camera2D/BingoManager/BingoPanelControl/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="player/Camera2D/BingoManager/BingoPanelControl/GridContainer/8"]
+layout_mode = 2
+offset_left = 2.10845
+offset_top = -0.339976
+offset_right = 12.1084
+offset_bottom = 22.66
+text = "8"
+label_settings = SubResource("LabelSettings_sswqx")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="player/Camera2D/BingoManager/BingoPanelControl/GridContainer/8"]
+visible = false
+layout_mode = 0
+offset_left = -1.18067
+offset_top = 12.9836
+offset_right = 38.8193
+offset_bottom = 52.9836
+scale = Vector2(0.412763, -0.0309063)
+color = Color(1, 1, 0, 1)
+
+[node name="9" type="Control" parent="player/Camera2D/BingoManager/BingoPanelControl/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="player/Camera2D/BingoManager/BingoPanelControl/GridContainer/9"]
+layout_mode = 2
+offset_left = 2.10845
+offset_top = -0.339976
+offset_right = 12.1084
+offset_bottom = 22.66
+text = "9"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="player/Camera2D/BingoManager/BingoPanelControl/GridContainer/9"]
+visible = false
+layout_mode = 0
+offset_left = -1.18067
+offset_top = 12.9836
+offset_right = 38.8193
+offset_bottom = 52.9836
+scale = Vector2(0.412763, -0.0309063)
+color = Color(1, 1, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="player/Camera2D/BingoManager"]
+root_node = NodePath("../BingoPanelBG")
+libraries = {
+&"": SubResource("AnimationLibrary_hdonv")
+}

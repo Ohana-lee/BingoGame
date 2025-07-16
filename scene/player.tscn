@@ -1,6 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://daagcn7p51a3n"]
+[gd_scene load_steps=17 format=3 uid="uid://daagcn7p51a3n"]
 
-[ext_resource type="Script" uid="uid://bt5eb3ulx1gji" path="res://scene/player.gd" id="1_hjaqi"]
+[ext_resource type="Script" uid="uid://bt5eb3ulx1gji" path="res://scripts/player.gd" id="1_hjaqi"]
 [ext_resource type="Texture2D" uid="uid://cn0h2iekhmhne" path="res://mc.png" id="2_fvtld"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ct4mp"]
@@ -120,12 +120,18 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hjaqi"]
+radius = 14.0
+height = 38.0
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("1_hjaqi")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(156, 95)
 sprite_frames = SubResource("SpriteFrames_j4wxg")
-animation = &"side_idle"
+animation = &"front walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(155, 96)
+shape = SubResource("CapsuleShape2D_hjaqi")

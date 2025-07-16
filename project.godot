@@ -57,11 +57,16 @@ variables={
 
 [display]
 
-window/stretch/scale=2.0
+window/subwindows/embed_subwindows=false
+window/stretch/scale=1.3
 
 [dotnet]
 
 project/assembly_name="VN Game"
+
+[editor]
+
+version_control/autoload_on_startup=true
 
 [editor_plugins]
 
