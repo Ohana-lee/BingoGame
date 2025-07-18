@@ -7,3 +7,8 @@ NPC1: 嗨~
 - 拜拜
 	NPC1: (傷心)
 	set {ans} = false
+NPC1: 要結束對話嗎？
+- 要
+	[signal arg="returnToHunting"]
+- 不要
+	NPC1: (開心)

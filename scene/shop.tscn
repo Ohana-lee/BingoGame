@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://d177x4iwyphba"]
+
+[ext_resource type="Script" uid="uid://dg6fg0pjti1hk" path="res://scripts/shop.gd" id="1_4p3p6"]
+[ext_resource type="Script" uid="uid://bmugti22u1yuj" path="res://addons/dialogic/Editor/dialogic_editor.gd" id="2_phbgv"]
+
+[node name="Shop" type="Node2D"]
+script = ExtResource("1_4p3p6")
+
+[node name="DialogicController" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_phbgv")
+metadata/_custom_type_script = "uid://bmugti22u1yuj"

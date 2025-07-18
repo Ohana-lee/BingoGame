@@ -106,8 +106,15 @@ script = ExtResource("3_sswqx")
 tile_color = Color(0, 0, 1, 1)
 bingo_item = 9
 
+[node name="shop" parent="." instance=ExtResource("2_0fbv7")]
+modulate = Color(1, 1, 0, 1)
+position = Vector2(-34, 288)
+script = ExtResource("3_sswqx")
+bingo_item = 10
+tile_type = "shop"
+
 [node name="player" parent="." instance=ExtResource("3_qhdy2")]
-position = Vector2(-259, -36)
+position = Vector2(-259, 327)
 scale = Vector2(2.53046, 2.33672)
 
 [node name="Camera2D" type="Camera2D" parent="player"]
